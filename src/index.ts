@@ -13,7 +13,9 @@ const extension: JupyterFrontEndPlugin<void> = {
   requires: [IThemeManager],
   autoStart: true,
   activate: (app: JupyterFrontEnd, manager: IThemeManager) => {
-    console.log('JupyterLab extension @IBArbitrary/jupyterlab_gruvbox_dark is activated!');
+    console.log(
+      'JupyterLab extension @IBArbitrary/jupyterlab_gruvbox_dark is activated!'
+    );
     const style = '@IBArbitrary/jupyterlab_gruvbox_dark/index.css';
 
     manager.register({

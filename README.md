@@ -1,8 +1,9 @@
 # jupyterlab_gruvbox_dark
 
-![Github Actions Status](https://github.com/IBArbitrary/jupyterlab_gruvbox_dark/workflows/Build/badge.svg)
+![Github Actions Status](https://github.com/IBArbitrary/jupyterlab_gruvbox_dark.git/workflows/Build/badge.svg)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IBArbitrary/jupyterlab_gruvbox_dark.git/main?urlpath=lab)
 
 Gruvbox Dark theme for JupyterLab.
+
 
 
 ## Requirements
@@ -11,9 +12,20 @@ Gruvbox Dark theme for JupyterLab.
 
 ## Install
 
+To install the extension, execute:
+
 ```bash
 pip install jupyterlab_gruvbox_dark
 ```
+
+## Uninstall
+
+To remove the extension, execute:
+
+```bash
+pip uninstall jupyterlab_gruvbox_dark
+```
+
 
 ## Contributing
 
@@ -53,9 +65,12 @@ By default, the `jlpm run build` command generates the source maps for this exte
 jupyter lab build --minimize=False
 ```
 
-### Uninstall
+### Development uninstall
 
 ```bash
 pip uninstall jupyterlab_gruvbox_dark
-jupyter labextension uninstall @IBArbitrary/jupyterlab_gruvbox_dark
 ```
+
+In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
+command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
+folder is located. Then you can remove the symlink named `@IBArbitrary/jupyterlab_gruvbox_dark` within that folder.

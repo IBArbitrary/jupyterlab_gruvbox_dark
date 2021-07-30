@@ -2,9 +2,9 @@
 # this environment may also be used locally on Linux/MacOS/Windows, e.g.
 #
 #   conda env update --file binder/environment.yml
-#   conda activate jupyterlab_gruvbox_dark-demo
+#   conda activate jupyterlab-gruvbox-dark-demo
 #
-name: jupyterlab_gruvbox_dark-demo
+name: jupyterlab-gruvbox-dark-demo
 
 channels:
   - conda-forge

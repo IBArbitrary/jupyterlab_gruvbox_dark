@@ -62,6 +62,10 @@
   "jupyterlab": {
     "extension": true,
     "themePath": "style/index.css",
-    "outputDir": "jupyterlab-gruvbox-dark/labextension"
+    "outputDir": "jupyterlab-gruvbox-dark/labextension",
+    "_build": {
+      "load": "static/remoteEntry.d51bff47b22f4e84652d.js",
+      "extension": "./extension"
+    }
   }
 }

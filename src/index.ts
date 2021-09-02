@@ -3,15 +3,26 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
+import { IThemeManager } from '@jupyterlab/apputils';
+
 /**
- * Initialization data for the @IBArbitrary/jupyterlab_gruvbox_dark extension.
+ * Initialization data for the jupyterlab-gruvbox-dark extension.
  */
-const plugin: JupyterFrontEndPlugin<void> = {
-  id: '@IBArbitrary/jupyterlab_gruvbox_dark:plugin',
+const extension: JupyterFrontEndPlugin<void> = {
+  id: 'jupyterlab-gruvbox-dark',
+  requires: [IThemeManager],
   autoStart: true,
-  activate: (app: JupyterFrontEnd) => {
-    console.log('JupyterLab extension @IBArbitrary/jupyterlab_gruvbox_dark is activated!');
+  activate: (app: JupyterFrontEnd, manager: IThemeManager) => {
+    console.log('JupyterLab extension jupyterlab-gruvbox-dark is activated!');
+    const style = 'jupyterlab-gruvbox-dark/index.css';
+
+    manager.register({
+      name: 'jupyterlab-gruvbox-dark',
+      isLight: true,
+      load: () => manager.loadCSS(style),
+      unload: () => Promise.resolve(undefined)
+    });
   }
 };
 
-export default plugin;
+export default extension;

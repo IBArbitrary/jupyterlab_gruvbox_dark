@@ -1,54 +1,84 @@
 """
-jupyterlab_gruvbox_dark setup
+jupyterlab-gruvbox-dark setup
 """
 import json
-import sys
-from pathlib import Path
+import os
 
+from jupyter_packaging import (
+    create_cmdclass, install_npm, ensure_targets,
+    combine_commands, skip_if_exists,
+)
 import setuptools
 
-HERE = Path(__file__).parent.resolve()
+HERE = os.path.abspath(os.path.dirname(__file__))
 
 # The name of the project
-name = "jupyterlab_gruvbox_dark"
+name = "jupyterlab-gruvbox-dark"
 
-lab_path = (HERE / name.replace("-", "_") / "labextension")
+# Get our version
+with open(os.path.join(HERE, 'package.json')) as f:
+    version = json.load(f)['version']
+
+lab_path = os.path.join(HERE, name, "labextension")
 
 # Representative files that should exist after a successful build
-ensured_targets = [
-    str(lab_path / "package.json"),
-    str(lab_path / "static/style.js")
+jstargets = [
+    os.path.join(lab_path, "package.json"),
 ]
 
-labext_name = "@IBArbitrary/jupyterlab_gruvbox_dark"
+package_data_spec = {
+    name: [
+        "*"
+    ]
+}
+
+labext_name = "jupyterlab-gruvbox-dark"
 
 data_files_spec = [
-    ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),
+    ("share/jupyter/labextensions/%s" % labext_name, lab_path, "**"),
+    ("share/jupyter/labextensions/%s" % labext_name, HERE, "install.json"),
 ]
 
-long_description = (HERE / "README.md").read_text()
+cmdclass = create_cmdclass(
+    "jsdeps",
+    package_data_spec=package_data_spec,
+    data_files_spec=data_files_spec
+)
 
-# Get the package info from package.json
-pkg_json = json.loads((HERE / "package.json").read_bytes())
+js_command = combine_commands(
+    install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
+    ensure_targets(jstargets),
+)
+
+is_repo = os.path.exists(os.path.join(HERE, '.git'))
+if is_repo:
+    cmdclass['jsdeps'] = js_command
+else:
+    cmdclass['jsdeps'] = skip_if_exists(jstargets, js_command)
+
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setup_args = dict(
     name=name,
-    version=pkg_json["version"],
-    url=pkg_json["homepage"],
-    author=pkg_json["author"]["name"],
-    author_email=pkg_json["author"]["email"],
-    description=pkg_json["description"],
-    license=pkg_json["license"],
+    version=version,
+    url="https://github.com/IBArbitrary/jupyterlab_gruvbox_dark",
+    author="Rajeshkumar K",
+    description="Gruvbox Dark colorscheme for JupyterLab interface.",
     long_description=long_description,
     long_description_content_type="text/markdown",
+    cmdclass=cmdclass,
     packages=setuptools.find_packages(),
-    install_requires=[],
+    install_requires=[
+        "jupyterlab>=3.0.0,==3.*",
+    ],
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",
+    license="BSD-3-Clause",
     platforms="Linux, Mac OS X, Windows",
-    keywords=["Jupyter", "JupyterLab", "JupyterLab3"],
+    keywords=["Jupyter", "JupyterLab"],
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
@@ -56,28 +86,14 @@ setup_args = dict(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Framework :: Jupyter",
+        "Framework :: Jupyter :: JupyterLab :: 3",
+        "Framework :: Jupyter :: JupyterLab :: Extensions",
+        "Framework :: Jupyter :: JupyterLab :: Extensions :: Prebuilt",
+        "Framework :: Jupyter :: JupyterLab :: Extensions :: Themes",
     ],
 )
 
-try:
-    from jupyter_packaging import (
-        wrap_installers,
-        npm_builder,
-        get_data_files
-    )
-    post_develop = npm_builder(
-        build_cmd="install:extension", source_dir="src", build_dir=lab_path
-    )
-    setup_args["cmdclass"] = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
-    setup_args["data_files"] = get_data_files(data_files_spec)
-except ImportError as e:
-    import logging
-    logging.basicConfig(format="%(levelname)s: %(message)s")
-    logging.warning("Build tool `jupyter-packaging` is missing. Install it with pip or conda.")
-    if not ("--name" in sys.argv or "--version" in sys.argv):
-        raise e
 
 if __name__ == "__main__":
     setuptools.setup(**setup_args)

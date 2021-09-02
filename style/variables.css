@@ -55,7 +55,7 @@ all of MD as it is not optimized for dense, information rich UIs.
   --gd-orange1: #d65d0e;
   --gd-orange-extra: #e96e13;
   --gd-orange2: #fe8019;
-    
+
   /* Elevation
    *
    * We style box-shadows using Material Design's idea of elevation. These particular numbers are taken from here:
@@ -213,9 +213,9 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-code-font-size: 12px;
   --jp-code-line-height: 1.3077; /* 17px for 15px base */
   --jp-code-padding: 0.385em; /* 5px for 15px base */
-  --jp-code-font-family-default: Input Mono, Consolas, Menlo, Monaco, 'Lucida Console',
-    'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
-    'Courier New', monospace, serif;
+  --jp-code-font-family-default: Input Mono, Consolas, Menlo, Monaco,
+    'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
   --jp-code-font-family: var(--jp-code-font-family-default);
 
   /* This gives a magnification of about 125% in presentation mode over normal. */
@@ -319,7 +319,7 @@ all of MD as it is not optimized for dense, information rich UIs.
 
   --jp-notebook-padding: 10px;
   --jp-notebook-select-background: var(--jp-layout-color2);
-  --jp-notebook-multiselected-color: rgba(181, 118, 20, 0.24);
+  --jp-notebook-multiselected-color: var(--jp-layout-color4);
 
   /* The scroll padding is calculated to fill enough space at the bottom of the
   notebook to show one single-line cell (with appropriate padding) at the top
@@ -367,7 +367,7 @@ all of MD as it is not optimized for dense, information rich UIs.
   /* General editor styles */
 
   --jp-editor-selected-background: var(--jp-layout-color2);
-  --jp-editor-selected-focused-background: #d79921;
+  --jp-editor-selected-focused-background: var(--jp-layout-color4);
   --jp-editor-cursor-color: #a9b7c6; /*{ border-left: 1px solid var(--jp-ui-font-color0) };*/
 
   /*

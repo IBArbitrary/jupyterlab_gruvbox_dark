@@ -1,5 +1,5 @@
 """
-jupyterlab-gruvbox-dark setup
+jupyterlab_gruvbox_dark setup
 """
 import json
 import os
@@ -13,7 +13,7 @@ import setuptools
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 # The name of the project
-name = "jupyterlab-gruvbox-dark"
+name = "jupyterlab_gruvbox_dark"
 
 # Get our version
 with open(os.path.join(HERE, 'package.json')) as f:
@@ -32,7 +32,7 @@ package_data_spec = {
     ]
 }
 
-labext_name = "jupyterlab-gruvbox-dark"
+labext_name = "jupyterlab_gruvbox_dark"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, lab_path, "**"),

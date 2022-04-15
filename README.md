@@ -1,4 +1,4 @@
-# jupyterlab-gruvbox-dark
+# jupyterlab_gruvbox_dark
 
 ![Github Actions Status](https://github.com/IBArbitrary/jupyterlab_gruvbox_dark/workflows/Build/badge.svg)
 
@@ -12,7 +12,7 @@ Gruvbox Dark colorscheme for JupyterLab interface.
 ## Install
 
 ```bash
-pip install jupyterlab-gruvbox-dark
+pip install jupyterlab_gruvbox_dark
 ```
 
 ## Contributing
@@ -27,7 +27,7 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Change directory to the jupyterlab-gruvbox-dark directory
+# Change directory to the jupyterlab_gruvbox_dark directory
 # Install package in development mode
 pip install -e .
 # Link your development version of the extension with JupyterLab
@@ -56,6 +56,6 @@ jupyter lab build --minimize=False
 ### Uninstall
 
 ```bash
-pip uninstall jupyterlab-gruvbox-dark
-jupyter labextension uninstall jupyterlab-gruvbox-dark
+pip uninstall jupyterlab_gruvbox_dark
+jupyter labextension uninstall jupyterlab_gruvbox_dark
 ```

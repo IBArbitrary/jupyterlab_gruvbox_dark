@@ -161,8 +161,8 @@ all of MD as it is not optimized for dense, information rich UIs.
    * These will typically go from light to darker, in both a dark and light theme.
    */
 
-  --jp-ui-inverse-font-color0: var(--gd-gray);
-  --jp-ui-inverse-font-color1: var(--gd-gray-dark);
+  --jp-ui-inverse-font-color0: var(--gd-foreground-light);
+  --jp-ui-inverse-font-color1: var(--gd-foreground-light);
   --jp-ui-inverse-font-color2: var(--jp-layout-color6);
   --jp-ui-inverse-font-color3: var(--jp-layout-color5);
 
